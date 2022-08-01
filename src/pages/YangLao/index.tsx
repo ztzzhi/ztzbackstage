@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
 import { Card, Form, Input, Col, Row, Button, Table } from "antd"
 
 import useColumns from "./columns"
+import RollNumber from "@/components/RollNumber"
+import CountUp from "react-countup"
 
 const Index: React.FC = () => {
   const [form] = Form.useForm()

@@ -130,7 +130,7 @@ export default function useColumns({
       render: (record: any) => (
         <Space size={6} direction="vertical">
           <Button type="link">
-            <Link to={`/cultivate/edit_${record.id}`} state={record}>
+            <Link to={`/cultivate/edit/${record.id}`} state={record}>
               编辑
             </Link>
           </Button>

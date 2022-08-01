@@ -23,7 +23,7 @@ export default function AppRouter() {
       children: [
         { path: "", element: <Home /> },
         { path: "cultivate", element: <Cultivate /> },
-        { path: "cultivate/edit_:id", element: <CultivateEdit /> },
+        { path: "cultivate/edit/:id", element: <CultivateEdit /> },
         { path: "yanglao", element: <YangLao /> },
         { path: "compress", element: <ComPress /> }
       ]

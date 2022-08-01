@@ -69,3 +69,14 @@ optionFilterProp: "children"
 
 
 ### scp 本地文件 root@180.76.xxx.x:/usr/share 发声本地文件到服务器/usr/share目录下
+
+
+### 移动端H5 防止Ios出现横向滚动条     
+  overflow: hidden;
+  overflow-y: auto;
+
+### 获取原生button的Ts类型 type ButtonProps = React.ButtonHTMLAttributes<HTMLElement>
+### 获取原生a标签的Ts类型 type AProps = React.AnchorHTMLAttributes<HTMLElement>
+
+### Partial Ts类型 表示可选类型类似于？
+### Omit Ts类型 表示从中剔除某个类型

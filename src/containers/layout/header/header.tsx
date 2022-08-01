@@ -14,6 +14,8 @@ import { Select } from "antd"
 
 import { useTranslation } from "react-i18next"
 
+import { useLocation, useParams, useSearchParams } from "react-router-dom"
+
 const Header: React.FC = () => {
   const { Option } = Select
 
@@ -25,6 +27,10 @@ const Header: React.FC = () => {
   const handleChangeLanguage = (value: string) => {
     dispatch(changeLanguageAction(value))
   }
+
+  const location = useLocation()
+  console.log(location)
+
   return (
     <div className={style.headerText}>
       <div>{t("header.logoText")}</div>
