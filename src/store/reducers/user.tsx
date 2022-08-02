@@ -2,10 +2,12 @@ import { LANGUAGE_CODE } from "../constant"
 
 export interface userType {
   username: string
+  userPover: any[]
 }
 
 const initState: userType = {
-  username: "ztz"
+  username: "ztz",
+  userPover: ["v1", "v2", "v3", "v4", "v5"]
 }
 
 export default function userReducer(preState = initState, action: any) {

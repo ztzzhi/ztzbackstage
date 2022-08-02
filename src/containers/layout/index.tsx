@@ -5,6 +5,7 @@ import { Layout } from "antd"
 import { Outlet } from "react-router-dom"
 //@ts-ignore
 import style from "./index.module.less"
+import RouterBefore from "../../router/routerBefore"
 
 const { Header, Sider, Content } = Layout
 const Index: React.FC = () => {
@@ -19,7 +20,9 @@ const Index: React.FC = () => {
             <MenuSelf></MenuSelf>
           </Sider>
           <Content className={style.mainContent}>
-            <Outlet></Outlet>
+            <RouterBefore>
+              <Outlet></Outlet>
+            </RouterBefore>
           </Content>
         </Layout>
       </Layout>
