@@ -20,9 +20,11 @@ const Index: React.FC = () => {
             <MenuSelf></MenuSelf>
           </Sider>
           <Content className={style.mainContent}>
-            <RouterBefore>
-              <Outlet></Outlet>
-            </RouterBefore>
+            <div className={style.mainContentRound}>
+              <RouterBefore>
+                <Outlet></Outlet>
+              </RouterBefore>
+            </div>
           </Content>
         </Layout>
       </Layout>

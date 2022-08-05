@@ -101,7 +101,7 @@ const Index: React.FC = () => {
           page={initParams.page}
           loading={loading}
           selectRows={selectRows}
-          pageSizeChange={pageSizeChange}
+          onChange={pageSizeChange}
         ></Table>
         <Modal
           title="编辑功能展示"

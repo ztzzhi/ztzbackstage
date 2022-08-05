@@ -1,130 +1,113 @@
-import React, { useState } from "react"
-import { Card, Form, Input, Col, Row, Button, Table } from "antd"
+import React, { useState, useEffect } from "react"
+import { Card, Form, Input, Col, Row, Button, Skeleton, Space } from "antd"
 
 import useColumns from "./columns"
-import RollNumber from "@/components/RollNumber"
-import CountUp from "react-countup"
+import QueryForm from "@/components/QueryForm"
+import TablePro from "@/components/TablePro"
+import PageContainer from "@/components/PageContainer/PageContainer"
+import Table from "@/components/Table"
+import {
+  ProFormDatePicker,
+  ProFormText,
+  QueryFilter,
+  ProFormSwitch,
+  ProFormSelect,
+  ProFormDateTimeRangePicker,
+  ProFormDateTimePicker,
+  ProFormDateRangePicker
+} from "@ant-design/pro-components"
+
+import { getCultivate } from "../../api/member"
 
 const Index: React.FC = () => {
-  const [form] = Form.useForm()
-  const onFinish = async () => {
-    const values = await form.validateFields()
-    console.log(values, "validateFields")
-  }
+  // QueryFilter使用
+  const [formSearch] = Form.useForm()
+  // table组件使用
+  const [list, setList] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [total, setTotal] = useState(0)
+  const [condition, setCondition] = useState<{
+    name?: string
+    page: number
+    pageSize: number
+    status?: string
+  }>({
+    page: 1,
+    pageSize: 10
+  })
 
-  const handleReset = () => {
-    form.resetFields()
-  }
+  useEffect(() => {
+    getList()
+  }, [])
 
-  const onFinishFailed = (val: any) => {
-    console.log("onFinishFailedmval", val)
-  }
-
-  const onShowChange = (val: any) => {
-    console.log(val, "onShowChange")
-  }
-
-  const dataSource = [
-    {
-      name: "z",
-      register_funds: "哈哈哈",
-      acreage: "1111",
-      register_address: "zzz",
-      company_address: "akjsdhkahskdhaksd",
-      afunction: "121212",
-      bfunction: "asdasdasdasd",
-      cfunction: "asdasdasdasdasd"
-    },
-    {
-      name: "zt",
-      register_funds: "哈哈哈1",
-      acreage: "1111",
-      register_address: "zzz",
-      company_address: "akjsdhkahskdhaksd",
-      afunction: "121212",
-      bfunction: "asdasdasdasd",
-      cfunction: "asdasdasdasdasd"
-    },
-    {
-      name: "ztz",
-      register_funds: "哈哈哈2",
-      acreage: "1111",
-      register_address: "zzz",
-      company_address: "akjsdhkahskdhaksdakjsdhkahskdhaksdakjsdhkahskdhaksd",
-      afunction: "121212",
-      bfunction: "asdasdasdasd",
-      cfunction: "asdasdasdasdasd"
+  const getList = async (param = {}) => {
+    const result: any = await getCultivate(param)
+    const { data, code } = result
+    if (code === 0) {
+      setList(data.data)
+      setLoading(false)
+      setTotal(data?.total)
     }
-  ]
+  }
 
-  const title = (
-    <div>
-      <Row>
-        <Form
-          name="basic"
-          autoComplete="off"
-          layout="inline"
-          form={form}
-          onFinishFailed={onFinishFailed}
-        >
-          <Row gutter={[20, 15]}>
-            <Col sm={24} md={24} lg={12} xl={8} xxl={6}>
-              <Form.Item label="培训机构" name="username1">
-                <Input allowClear />
-              </Form.Item>
-            </Col>
-            <Col sm={24} md={24} lg={12} xl={8} xxl={6}>
-              <Form.Item label="客户经理" name="username2">
-                <Input allowClear />
-              </Form.Item>
-            </Col>
-            <Col sm={24} md={24} lg={12} xl={8} xxl={6}>
-              <Form.Item label="培训机构名称" name="username3">
-                <Input allowClear />
-              </Form.Item>
-            </Col>
-            <Col sm={24} md={24} lg={12} xl={8} xxl={6}>
-              <Form.Item label="努涅" name="username4">
-                <Input allowClear />
-              </Form.Item>
-            </Col>
-            <Col sm={24} md={24} lg={12} xl={8} xxl={6}>
-              <Form.Item label="查询" name="username5">
-                <Input allowClear />
-              </Form.Item>
-            </Col>
-          </Row>
-        </Form>
-      </Row>
-      <Row gutter={[10, 10]} style={{ marginTop: "15px" }} justify="end">
-        <Col>
-          <Button type="primary" onClick={onFinish}>
-            查询
-          </Button>
-        </Col>
-        <Col>
-          <Button onClick={handleReset}>清除</Button>
-        </Col>
-      </Row>
-    </div>
-  )
+  const onFinish = (val: any) => {
+    console.log(val)
+  }
+
+  // 设置每页分页的条数
+  const getPageSize = (page: number, size: number) => {
+    setCondition({ ...condition, page, pageSize: size })
+    getList({ ...condition, page, pageSize: size })
+  }
+
   return (
-    <Card style={{ height: "100%", borderRadius: "6px" }} title={title}>
-      <Table
-        rowKey={record => record.name}
-        dataSource={dataSource}
-        columns={useColumns()}
-        scroll={{ x: 500 }}
-        pagination={{
-          total: 50,
-          showSizeChanger: true,
-          showTotal: (total: any) => `共 ${total} 条`,
-          pageSizeOptions: [10, 15, 20, 30],
-          current: 1,
-          onChange: onShowChange
-        }}
-      ></Table>
-    </Card>
+    <>
+      <PageContainer
+        title="即卡卡的"
+        extra={
+          <Space>
+            <Button>sss</Button>
+            <Button>s11ss</Button>
+          </Space>
+        }
+      >
+        <QueryForm onFinish={onFinish} form={formSearch}>
+          <ProFormText name="name" label="应用名称" />
+          <ProFormDatePicker name="createDate" label="创建时间" />
+          <ProFormText name="status" label="应用状态" />
+          <ProFormDatePicker name="replyDate" label="响应日期" />
+          <ProFormDateTimePicker name="startDate" label="创建时间" />
+          <ProFormSelect
+            name="select"
+            label="选择器"
+            mode="single"
+            // showSearch
+            options={[
+              { label: "123", value: "1" },
+              { label: "1234", value: "2" }
+            ]}
+          />
+          <ProFormDateRangePicker name="endDate" label="结束时间" />
+          {/* <ProFormSwitch name="ProFormSwitch" label="结束时间" /> */}
+          <ProFormDateTimeRangePicker
+            name="ProFormDateTimeRangePicker"
+            label="结束时间"
+          />
+        </QueryForm>
+        {/* <TablePro></TablePro> */}
+        <Table
+          dataSource={list}
+          columns={useColumns({
+            page: condition.page,
+            pageSize: condition.pageSize
+          })}
+          onChange={getPageSize}
+          loading={loading}
+          total={total}
+          page={condition.page}
+        />
+      </PageContainer>
+    </>
   )
 }
 

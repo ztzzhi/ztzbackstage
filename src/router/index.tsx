@@ -32,7 +32,7 @@ export const allRouters: RouteObjectObj[] = [
       { path: "/", element: <Home />, pover: "v1" },
       { path: "/cultivate", element: <Cultivate />, pover: "v2" },
       { path: "/cultivate/edit/:id", element: <CultivateEdit />, pover: "v3" },
-      { path: "/yanglao", element: <YangLao />, pover: "v10" },
+      { path: "/yanglao", element: <YangLao />, pover: "v1" },
       { path: "/compress", element: <ComPress />, pover: "v3" }
     ]
   },

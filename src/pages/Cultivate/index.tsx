@@ -27,6 +27,7 @@ const { confirm } = Modal
 
 export default function Cultivate() {
   const [list, setList] = useState([])
+  const sortableGoods = useRef<any>()
   const [condition, setCondition] = useState<{
     name?: string
     page?: number
@@ -37,10 +38,26 @@ export default function Cultivate() {
   const [total, setTotal] = useState(0)
   const [form] = Form.useForm()
   const reasonRef: any = useRef(null)
-
   useEffect(() => {
     getList()
   }, [])
+
+  // const initSort = (data: any) => {
+  //   const tab = document.getElementsByClassName("goodsTable")
+  //   const el: any = tab[0].getElementsByClassName("ant-table-tbody")[0]
+  //   Sortable.create(el, {
+  //     animation: 100, //动画参数
+  //     filter: ".ant-table-measure-row",
+  //     onEnd: function (evt: any) {
+  //       const newArr = JSON.parse(JSON.stringify(data))
+  //       const beginIndex = evt.oldIndex - 1
+  //       const endIndex = evt.newIndex - 1
+  //       console.log(beginIndex, endIndex)
+  //       newArr.splice(endIndex, 0, newArr.splice(beginIndex, 1)[0])
+  //       console.log(newArr, "newArr")
+  //     }
+  //   })
+  // }
 
   const getList = async (param = {}) => {
     const result: any = await getCultivate(param)
@@ -49,6 +66,7 @@ export default function Cultivate() {
       setList(data.data)
       setLoading(false)
       setTotal(data?.total)
+      // initSort(data.data)
     }
   }
 
@@ -220,18 +238,20 @@ export default function Cultivate() {
         </Form>
       }
     >
-      <Table
-        dataSource={list}
-        columns={useColumns({
-          showPassConfirm,
-          showRefuseConfirm,
-          resetPasswd
-        })}
-        pagesize={getPageSize}
-        loading={loading}
-        total={total}
-        page={condition.page}
-      />
+      <div className="goodsTable" ref={sortableGoods}>
+        <Table
+          dataSource={list}
+          columns={useColumns({
+            showPassConfirm,
+            showRefuseConfirm,
+            resetPasswd
+          })}
+          pagesize={getPageSize}
+          loading={loading}
+          total={total}
+          page={condition.page}
+        />
+      </div>
     </Card>
   )
 }

@@ -9,7 +9,7 @@ interface Iprops {
   loading: boolean
   isSelection?: boolean
   selectRows?: (...set: any) => void
-  pageSizeChange: (...set: any) => void
+  onChange: (...set: any) => void
 }
 
 export default function TableComponent(props: Iprops) {
@@ -26,12 +26,13 @@ export default function TableComponent(props: Iprops) {
     onChange: onSelectChange
   }
 
-  const onShowChange = (page: number, size: number) => {
-    props.pageSizeChange(page, size)
+  const onChange = (page: number, size: number) => {
+    props.onChange(page, size)
   }
 
   return props.isSelection ? (
     <Table
+      bordered
       rowKey="id"
       rowSelection={rowSelection}
       rowClassName={(_, index) => (index % 2 === 1 ? "tableBac" : "")}
@@ -44,13 +45,14 @@ export default function TableComponent(props: Iprops) {
         showTotal: total => `共 ${total} 条`,
         pageSizeOptions: [10, 15, 20, 30],
         current: props.page,
-        onChange: onShowChange
+        onChange: onChange
       }}
       loading={props.loading}
       scroll={{ x: 500 }}
     />
   ) : (
     <Table
+      bordered
       rowKey="id"
       rowClassName={(_, index) => (index % 2 === 1 ? "tableBac" : "")}
       dataSource={props.dataSource}
@@ -62,7 +64,7 @@ export default function TableComponent(props: Iprops) {
         showTotal: total => `共 ${total} 条`,
         pageSizeOptions: [10, 15, 20, 30],
         current: props.page,
-        onChange: onShowChange
+        onChange: onChange
       }}
       loading={props.loading}
       scroll={{ x: 500 }}

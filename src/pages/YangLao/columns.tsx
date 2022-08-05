@@ -12,9 +12,24 @@ interface IDataSource {
   bfunction: string
   cfunction: string
 }
-export default function useColumns() {
+
+interface Iprops {
+  page: number
+  pageSize: number
+}
+export default function useColumns(props: Iprops) {
   // const { t } = useTranslation()
   const TableColumn: ColumnsType<IDataSource> = [
+    {
+      title: "序号",
+      align: "center",
+      dataIndex: "",
+      key: "",
+      width: 150,
+      render: (_, __, index) => {
+        return (props.page - 1) * props.pageSize + (index + 1)
+      }
+    },
     {
       title: "你好",
       align: "center",

@@ -90,3 +90,24 @@ th {
   border-radius: 5px;
   background-color: #929EAD;
 }
+
+.action {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ant-layout-sider-children .ant-menu-root .ant-menu-item:nth-child(1) {
+  margin-top: 0;
+}
+
+.ProTableClass .ant-pro-card-body {
+  padding: 0;
+}
+
+.ProTableClass .ant-pro-table-list-toolbar-container {
+  padding-top: 0px;
+}
