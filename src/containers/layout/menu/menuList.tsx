@@ -3,6 +3,12 @@ const menuList = {
   px: [],
   gv: [
     {
+      label: "模板示例All",
+      key: "yanglao",
+      icon: "icon-yanglao",
+      path: "yanglao"
+    },
+    {
       label: "模板示例",
       key: "compress",
       icon: "icon-yonghu",
@@ -14,12 +20,7 @@ const menuList = {
       icon: "icon-peixun",
       path: "cultivate"
     },
-    {
-      label: "养老机构",
-      key: "yanglao",
-      icon: "icon-yanglao",
-      path: "yanglao"
-    },
+
     {
       label: "护理员管理",
       key: "caregivers",
