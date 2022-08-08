@@ -47,6 +47,11 @@ export default function useFormEdit() {
       label: "状态",
       type: "Switch",
       valuePropName: "checked"
+    },
+    {
+      name: "imagelist",
+      label: "图片上传",
+      type: "Upload"
     }
   ]
 }

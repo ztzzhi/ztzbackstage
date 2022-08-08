@@ -1,5 +1,5 @@
 import { Form, Input, DatePicker, InputNumber, Switch, Select } from "antd"
-
+import Upload from "@/components/Upload"
 const { RangePicker } = DatePicker
 
 const { Option } = Select
@@ -30,6 +30,9 @@ export default function TableComponent(props: Iprops) {
     switch (value) {
       case "Search":
         return <Input.Search {...item.config}></Input.Search>
+        break
+      case "Upload":
+        return <Upload {...item.config}></Upload>
         break
       case "InputNumber":
         return <InputNumber {...item.config}></InputNumber>
