@@ -90,7 +90,7 @@ export default function useColumns(props: Iprops) {
       width: 150,
       ellipsis: true,
       render: company_address => {
-        return company_address.length > 20 ? (
+        return company_address && company_address.length > 20 ? (
           <Tooltip placement="topLeft" title={company_address}>
             {company_address}
           </Tooltip>

@@ -3,7 +3,6 @@ import { Card, Form, Input, Col, Row, Button, Skeleton, Space } from "antd"
 
 import useColumns from "./columns"
 import QueryForm from "@/components/QueryForm"
-import TablePro from "@/components/TablePro"
 import PageContainer from "@/components/PageContainer/PageContainer"
 import Table from "@/components/Table"
 import {
@@ -18,6 +17,8 @@ import {
 } from "@ant-design/pro-components"
 
 import { getCultivate } from "../../api/member"
+
+import TableOrder from "@/components/TableOrder/TableOrder"
 
 const Index: React.FC = () => {
   // QueryFilter使用
