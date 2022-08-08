@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Card, Form, Input, Col, Row, Button, Skeleton, Space } from "antd"
+import { Form, Button, Space, Modal } from "antd"
 
 import useColumns from "./columns"
 import QueryForm from "@/components/QueryForm"
@@ -8,8 +8,6 @@ import Table from "@/components/Table"
 import {
   ProFormDatePicker,
   ProFormText,
-  QueryFilter,
-  ProFormSwitch,
   ProFormSelect,
   ProFormDateTimeRangePicker,
   ProFormDateTimePicker,
@@ -19,6 +17,12 @@ import {
 import { getCultivate } from "../../api/member"
 
 import TableOrder from "@/components/TableOrder/TableOrder"
+import { ExclamationCircleOutlined } from "@ant-design/icons"
+import useFormEdit from "./useFormEdit"
+
+import EditForm from "@/components/EditForm"
+
+const { confirm } = Modal
 
 const Index: React.FC = () => {
   // QueryFilter使用
@@ -36,6 +40,10 @@ const Index: React.FC = () => {
     page: 1,
     pageSize: 10
   })
+
+  // 编辑Modal
+  const [visible, setVisible] = useState(false)
+  const [formEdit] = Form.useForm()
 
   useEffect(() => {
     getList()
@@ -61,14 +69,31 @@ const Index: React.FC = () => {
     getList({ ...condition, page, pageSize: size })
   }
 
+  const handleEdit = () => {
+    setVisible(true)
+  }
+
+  const handleDel = () => {
+    confirm({
+      title: "培训机构审核确认不通过?",
+      icon: <ExclamationCircleOutlined />,
+      onOk: async () => {
+        console.log("del")
+      },
+      onCancel() {
+        console.log("Cancel")
+      }
+    })
+  }
+
   return (
     <>
       <PageContainer
-        title="即卡卡的"
+        title="后台列表模板"
         extra={
           <Space>
-            <Button>sss</Button>
-            <Button>s11ss</Button>
+            <Button type="primary">新建</Button>
+            <Button>打印</Button>
           </Space>
         }
       >
@@ -82,31 +107,54 @@ const Index: React.FC = () => {
             name="select"
             label="选择器"
             mode="single"
-            // showSearch
             options={[
               { label: "123", value: "1" },
               { label: "1234", value: "2" }
             ]}
           />
           <ProFormDateRangePicker name="endDate" label="结束时间" />
-          {/* <ProFormSwitch name="ProFormSwitch" label="结束时间" /> */}
           <ProFormDateTimeRangePicker
             name="ProFormDateTimeRangePicker"
             label="结束时间"
           />
         </QueryForm>
-        {/* <TablePro></TablePro> */}
+
         <Table
           dataSource={list}
           columns={useColumns({
             page: condition.page,
-            pageSize: condition.pageSize
+            pageSize: condition.pageSize,
+            handleEdit,
+            handleDel
           })}
           onChange={getPageSize}
           loading={loading}
           total={total}
           page={condition.page}
-        />
+        ></Table>
+
+        <Modal
+          title="编辑功能展示"
+          width={600}
+          visible={visible}
+          maskClosable={false}
+          onOk={() => {
+            formEdit
+              .validateFields()
+              .then(values => {
+                console.log(values) // values 是 formEdit表单数据
+              })
+              .catch(err => {
+                console.log(err)
+              })
+          }}
+          onCancel={() => {
+            formEdit.resetFields()
+            setVisible(false)
+          }}
+        >
+          <EditForm formConfigArray={useFormEdit()} form={formEdit}></EditForm>
+        </Modal>
       </PageContainer>
     </>
   )

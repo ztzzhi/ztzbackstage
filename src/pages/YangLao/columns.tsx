@@ -16,6 +16,8 @@ interface IDataSource {
 interface Iprops {
   page: number
   pageSize: number
+  handleEdit: (...set: any) => any
+  handleDel: (...set: any) => any
 }
 export default function useColumns(props: Iprops) {
   // const { t } = useTranslation()
@@ -109,8 +111,12 @@ export default function useColumns(props: Iprops) {
         return (
           <div>
             <Space>
-              <Button type="primary">编辑</Button>
-              <Button danger>删除</Button>
+              <Button type="primary" onClick={props.handleEdit}>
+                编辑
+              </Button>
+              <Button danger onClick={props.handleDel}>
+                删除
+              </Button>
             </Space>
           </div>
         )
