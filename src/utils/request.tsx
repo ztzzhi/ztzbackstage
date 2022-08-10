@@ -3,6 +3,7 @@
  */
 import axios from "axios"
 import { message } from "antd"
+
 import store from "../store"
 import qs from "qs"
 
@@ -18,6 +19,7 @@ instance.interceptors.request.use(
   config => {
     //从redux中获取之前保存的token
     const token = store.getState().login.token
+    
     if (token) {
       //如果token存在，就设置到请求头中
       config.headers!.Authorization = `Bearer ${token}`
