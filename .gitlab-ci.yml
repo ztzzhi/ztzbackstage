@@ -4,7 +4,7 @@ stages:
   - build
   - deploy
 
-job 1:
+job 0:
   stage: install
   script: 
     - node -v
