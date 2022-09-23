@@ -5,6 +5,7 @@ stages:
   - deploy
 
 cache:
+  key: nm
   paths:
     - nodo_modules/
     - build/
