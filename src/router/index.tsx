@@ -1,5 +1,5 @@
-import React, { lazy } from "react"
-import { useRoutes, Navigate } from "react-router-dom"
+import React from "react"
+import { useRoutes } from "react-router-dom"
 
 // 公共路由
 import Login from "../pages/Login"
