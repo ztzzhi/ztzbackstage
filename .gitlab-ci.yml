@@ -5,8 +5,8 @@ stages:
 
 cache:
   paths:
-    - nodo_modules/
-
+    - nodo_modules
+    - build
 job 1:
   stage: build
   script: 
