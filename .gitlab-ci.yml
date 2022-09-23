@@ -1,6 +1,5 @@
 image: node:16.14.0
 stages:
-  - install
   - build
   - deploy
 
@@ -8,22 +7,19 @@ cache:
   paths:
     - nodo_modules/
 
-job 0:
-  stage: install
+job 1:
+  stage: build
   script: 
     - node -v
     - npm -v
     - npm config set registry https://registry.npm.taobao.org
     - npm i --legacy-peer-deps
-job 1:
-  stage: build
-  script:
     - npm run build
-    - echo 'build 完成'
   artifacts:
     name: 'bundle'
     paths: 
       - dist/
+      
 job 2:
   stage: deploy
   script: echo 'deploy'
