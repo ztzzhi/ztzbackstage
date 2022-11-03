@@ -5,6 +5,7 @@ import AppRouter from "./router"
 import "./App.less"
 import "@/assets/css/reset.css"
 import "@/assets/css/global.less"
+
 import Performace from "@/Performance"
 
 function App() {
