@@ -14,7 +14,7 @@ function App() {
     Performace.Instance.onLoad()
   }
   return (
-    <div className="mainContainer">
+    <div className="mainContainer a b c">
       <BrowserRouter>
         <AppRouter />
       </BrowserRouter>
