@@ -8,6 +8,7 @@ import Performace from "@/Performance"
 
 function App() {
   useEffect(() => {
+      
     initCollection()
   }, [])
   const initCollection = () => {
