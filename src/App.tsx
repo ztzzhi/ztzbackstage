@@ -1,9 +1,6 @@
 import React, { useEffect } from "react"
-
 import { BrowserRouter } from "react-router-dom"
-
 import AppRouter from "./router"
-
 import "./App.less"
 import "@/assets/css/reset.css"
 import "@/assets/css/global.less"
@@ -17,7 +14,7 @@ function App() {
     Performace.Instance.onLoad()
   }
   return (
-    <div className="mainContainer onlayyou">
+    <div className="mainContainer">
       <BrowserRouter>
         <AppRouter />
       </BrowserRouter>
