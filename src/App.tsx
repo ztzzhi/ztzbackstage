@@ -1,12 +1,11 @@
 import React, { useEffect } from "react"
 import { BrowserRouter } from "react-router-dom"
 import AppRouter from "./router"
-
 import "./App.less"
 import "@/assets/css/reset.css"
-
 import "@/assets/css/global.less"
 import Performace from "@/Performance"
+
 function App() {
   useEffect(() => {
     initCollection()
