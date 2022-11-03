@@ -8,14 +8,13 @@ import Performace from "@/Performance"
 
 function App() {
   useEffect(() => {
-      
     initCollection()
   }, [])
   const initCollection = () => {
     Performace.Instance.onLoad()
   }
   return (
-    <div className="mainContainer a b c">
+    <div className="mainContainer a b">
       <BrowserRouter>
         <AppRouter />
       </BrowserRouter>
