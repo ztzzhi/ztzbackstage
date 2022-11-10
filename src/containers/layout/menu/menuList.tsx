@@ -28,6 +28,12 @@ const menuList = {
       path: "caregivers"
     },
     {
+      label: "直播",
+      key: "live",
+      icon: "icon-icon_huliyuanguanli",
+      path: "live"
+    },
+    {
       label: "学习资料管理",
       key: "exercise",
       icon: "icon-xuexiziliao",

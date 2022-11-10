@@ -7,7 +7,7 @@ import type { MenuProps } from "antd"
 //@ts-ignore
 import style from "./index.module.less"
 
-const Index: React.FC = () => {
+const Index = (props: any) => {
   const navigate = useNavigate()
   const handleClick = ({ domEvent }: any) => {
     const documentTitle = domEvent!.target.innerText
@@ -61,7 +61,7 @@ const Index: React.FC = () => {
         defaultSelectedKeys={[""]}
         selectedKeys={selectKey}
         defaultOpenKeys={openKeys}
-        mode="inline"
+        mode={props.mode ? props.mode : "inline"}
         theme="dark"
         className={style["left-nav-menu"]}
         onClick={handleClick}

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import { useSelector, useDispatch } from "react-redux"
 import { changeTokenAction } from "../../store/actions/login"
@@ -14,6 +14,7 @@ const Index: React.FC = () => {
   const handleChangeToken = () => {
     dispatch(changeTokenAction({ token: "1234567" }))
   }
+
   return (
     <>
       <div className={style.login}>

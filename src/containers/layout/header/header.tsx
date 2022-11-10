@@ -1,17 +1,16 @@
 import React from "react"
-//@ts-ignore
-import style from "./index.module.less"
+import "./index.less"
 import I18nDropdown from "./i18nDropdown"
 
 import { useTranslation } from "react-i18next"
 
-const Header: React.FC = () => {
+const Header = (props: any) => {
   const { t } = useTranslation()
-
   return (
-    <div className={style.headerText}>
-      <div>{t("header.logoText")}</div>
-      <div className="action">
+    <div className="headerText">
+      <div className="centerLeft">{t("header.logoText")}</div>
+      <div className="centerCenter">{props.children}</div>
+      <div className="action centerRight">
         <I18nDropdown></I18nDropdown>
       </div>
     </div>

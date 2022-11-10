@@ -5,6 +5,7 @@ import { Layout } from "antd"
 import { Outlet } from "react-router-dom"
 //@ts-ignore
 import style from "./index.module.less"
+import "./index.less"
 import RouterBefore from "../../router/routerBefore"
 const { Header, Sider, Content } = Layout
 const Index: React.FC = () => {
@@ -12,11 +13,15 @@ const Index: React.FC = () => {
     <div>
       <Layout className={style.admin}>
         <Header className={style.header}>
-          <HeaderSelf></HeaderSelf>
+          <HeaderSelf>
+            <div className="horizontalMenu">
+              <MenuSelf mode="horizontal"></MenuSelf>
+            </div>
+          </HeaderSelf>
         </Header>
         <Layout className={style.content}>
-          <Sider>
-            <MenuSelf></MenuSelf>
+          <Sider className="inlineMenu">
+            <MenuSelf mode="inline"></MenuSelf>
           </Sider>
           <Content className={style.mainContent}>
             <div className={style.mainContentRound}>

@@ -70,7 +70,9 @@ const Index: React.FC = () => {
 
   const getList = (page?: number) => {
     axios
-      .get("https://127.0.0.1:7001/v1/meiye/list?page=" + (page ? page : 1))
+      .get(
+        "https://www.myutils.cn:7001/v1/meiye/list?page=" + (page ? page : 1)
+      )
       .then((res: any) => {
         setList([...list, ...res.data.result])
       })

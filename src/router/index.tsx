@@ -55,6 +55,11 @@ export const allRouters: RouteObjectObj[] = [
         path: "/compress",
         component: lazy(() => lazyFix(() => import("@/pages/ComPress"))),
         pover: "v3"
+      },
+      {
+        path: "/live",
+        component: lazy(() => lazyFix(() => import("@/pages/Live"))),
+        pover: "v2"
       }
     ]
   },
