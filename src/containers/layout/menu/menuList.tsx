@@ -20,19 +20,19 @@ const menuList = {
       icon: "icon-peixun",
       path: "cultivate"
     },
-
+    {
+      label: "直播",
+      key: "live",
+      icon: "icon-biaoqian",
+      path: "live"
+    },
     {
       label: "护理员管理",
       key: "caregivers",
       icon: "icon-icon_huliyuanguanli",
       path: "caregivers"
     },
-    {
-      label: "直播",
-      key: "live",
-      icon: "icon-icon_huliyuanguanli",
-      path: "live"
-    },
+
     {
       label: "学习资料管理",
       key: "exercise",
