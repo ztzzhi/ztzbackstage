@@ -63,7 +63,7 @@ const Index = (props: any) => {
         defaultOpenKeys={openKeys}
         mode={props.mode ? props.mode : "inline"}
         theme="dark"
-        className={style["left-nav-menu"]}
+        // className={style["left-nav-menu"]}
         onClick={handleClick}
         items={menuListArr}
       >
